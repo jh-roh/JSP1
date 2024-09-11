@@ -43,6 +43,9 @@
 	MemberDao mdao = new MemberDao();
 	mdao.insertMethod(mbean);
 	
+	//회원 가입이 되었다면 회원 정보를 보여주는 페이지로 이동시킴
+	response.sendRedirect("MemberList.jsp");
+	
 	
 /*
 	String id = "sa";
