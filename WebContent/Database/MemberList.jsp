@@ -1,40 +1,47 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="model.MemberBean"%>
 <%@page import="java.util.Vector"%>
 <%@page import="model.MemberDao"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- 1.µ¥ÀÌÅÍº£ÀÌ½º¿¡¼­ ¸ğµç È¸¿øÀÇ Á¤º¸¸¦ °¡Á®¿È. 2. table ÅÂ±×¸¦ ÀÌ¿ëÇÏ¿© È­¸é¿¡ È¸¿øµéÀÇ Á¤º¸¸¦ Ç¥Ãâ  -->
+	<!-- 1.ë°ì´í„°ë² ì´ìŠ¤ì—ì„œ ëª¨ë“  íšŒì›ì˜ ì •ë³´ë¥¼ ê°€ì ¸ì˜´. 2. table íƒœê·¸ë¥¼ ì´ìš©í•˜ì—¬ í™”ë©´ì— íšŒì›ë“¤ì˜ ì •ë³´ë¥¼ í‘œì¶œ  -->
 
 <%
+request.setCharacterEncoding("UTF-8");
 	MemberDao mdao = new MemberDao();
 
-	//È¸¿øµéÀÇ Á¤º¸°¡ ¾ó¸¶³ª ÀúÀåµÇ¾î ÀÖ´ÂÁö ¸ğ¸£±â¿¡ °¡º¯±æÀÌÀÎ Vecotr¸¦ ÀÌ¿ëÇÏ¿© µ¥ÀÌÅÍ¸¦
-	//ÀúÀåÇØÁØ´Ù.
+	//íšŒì›ë“¤ì˜ ì •ë³´ê°€ ì–¼ë§ˆë‚˜ ì €ì¥ë˜ì–´ ìˆëŠ”ì§€ ëª¨ë¥´ê¸°ì— ê°€ë³€ê¸¸ì´ì¸ Vecotrë¥¼ ì´ìš©í•˜ì—¬ ë°ì´í„°ë¥¼
+	//ì €ì¥í•´ì¤€ë‹¤.
 	Vector<MemberBean> vec = mdao.getAllMember();
 
 %>
 <center>
 	<table width="800" border="1">
 		<tr height="50">
-			<td align="center" width="150">¾ÆÀÌµğ</td>
-			<td align="center" width="250">ÀÌ¸ŞÀÏ</td>
-			<td align="center" width="200">ÀüÈ­¹øÈ£</td>
-			<td align="center" width="200">Ãë¹Ì</td>
+			<td align="center" width="150">ì•„ì´ë””</td>
+			<td align="center" width="250">ì´ë©”ì¼</td>
+			<td align="center" width="200">ì „í™”ë²ˆí˜¸</td>
+			<td align="center" width="200">ì·¨ë¯¸</td>
 		</tr>
 		<%
 			for(int i = 0; i < vec.size(); i++) {
-			//º¤ÅÍ¿¡ ´ã±ä ºó Å¬·¡½º¸¦ ÇÏ³ª¾¿ ÃßÃâ
+			//ë²¡í„°ì— ë‹´ê¸´ ë¹ˆ í´ë˜ìŠ¤ë¥¼ í•˜ë‚˜ì”© ì¶”ì¶œ
 			MemberBean bean = vec.get(i);
 		%>
 			<tr height="50">
-				<td align="center" width="150"><%=bean.getId() %></td>
+				
+				<td align="center" width="150">
+					<a href="MemberInfo.jsp?id=<%=URLEncoder.encode(bean.getId(), "UTF-8")%>">
+					<%=bean.getId() %></a>
+				</td>
+				
 				<td align="center" width="250"><%=bean.getEmail() %></td>
 				<td align="center" width="200"><%=bean.getTel() %></td>
 				<td align="center" width="200"><%=bean.getHobby() %></td>

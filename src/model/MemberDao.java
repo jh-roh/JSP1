@@ -101,9 +101,6 @@ public class MemberDao {
 				v.add(bean); //0번지부터 순서대로 데이터가 저장
 			}
 			
-			//자원 반납
-			con.close();
-			
 		}catch (Exception e) {
 	        e.printStackTrace();
 	    } finally {
@@ -122,7 +119,47 @@ public class MemberDao {
 		
 	}
 	
-	
-	
-	
+	//한 사람의 대한 정보를 리턴하는 메소드 작성
+	public MemberBean getOneMember(String id) {
+		
+		//한 사람데 대한 정보만 리턴하기에 빈클래스 객체 생성
+		MemberBean bean = new MemberBean();
+		try {
+			//커넥션 연결
+			getCon();
+			String sql = "select * from member where id = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			//?에 값을 맵핑
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) { //레코드가 있다면
+				bean.setId(rs.getString(1));
+				bean.setPass1(rs.getString(2));
+				bean.setEmail(rs.getString(3));
+				bean.setTel(rs.getString(4));
+				bean.setHobby(rs.getString(5));
+				bean.setJob(rs.getString(6));
+				bean.setAge(rs.getString(7));
+				bean.setInfo(rs.getString(8));
+			}
+			
+		}catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        // 자원 반납
+	        try {
+	            if (rs != null) rs.close();
+	            if (pstmt != null) pstmt.close();
+	            if (con != null) con.close();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+		
+		return bean;
+	}
 }

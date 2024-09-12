@@ -6,19 +6,19 @@
 <%@ page import="java.sql.ResultSet" %>
 
 <%@page import="model.MemberBean"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <body>
 
 <%
-	request.setCharacterEncoding("EUC-KR");
+	request.setCharacterEncoding("UTF-8");
 
-	//Ãë¹Ì ºÎºĞÀº º°µµ·Î ÀĞ¾îµå·Á ´Ù½Ã ºóÅ¬·¡½º¿¡ ÀúÀå
+	//ì·¨ë¯¸ ë¶€ë¶„ì€ ë³„ë„ë¡œ ì½ì–´ë“œë ¤ ë‹¤ì‹œ ë¹ˆí´ë˜ìŠ¤ì— ì €ì¥
 	String[] hobby = request.getParameterValues("hobby");
 	
-	//¹è¿­ÀÇ ÀÖ´Â ³»¿ëÀ» ÇÏ³ªÀÇ ½ºÆ®¸µÀ¸·Î ÀúÀå
+	//ë°°ì—´ì˜ ìˆëŠ” ë‚´ìš©ì„ í•˜ë‚˜ì˜ ìŠ¤íŠ¸ë§ìœ¼ë¡œ ì €ì¥
 	String texthobby = "";
 	
 	for(int i = 0; i < hobby.length; i++) {
@@ -27,23 +27,23 @@
 		
 	
 %>
-	<!-- useBeanÀ» ÀÌ¿ëÇÏ¿© ÇÑ²¨¹ø¿¡ µ¥ÀÌÅÍ¸¦ ¹Ş¾Æ¿È -->
+	<!-- useBeanì„ ì´ìš©í•˜ì—¬ í•œêº¼ë²ˆì— ë°ì´í„°ë¥¼ ë°›ì•„ì˜´ -->
 
 	<jsp:useBean id="mbean" class="model.MemberBean">
-		<!-- ¸ÊÇÎ -->
+		<!-- ë§µí•‘ -->
 		<jsp:setProperty name="mbean" property="*" />
 	</jsp:useBean>
 
 
 <%
-	//±âÁ¸ Ãë¹Ì´Â ÁÖ¼Ò¹øÁö°¡ ÀúÀåµÇ±â¿¡ À§¿¡ ¹è¿­ÀÇ ³»¿ëÀ» ÇÏ³ªÀÇ ½ºÆ®¸µÀ¸·Î ÀúÀåÇÑ º¯¼ö¸£ ´Ù½Ã ÀÔ·Â
+	//ê¸°ì¡´ ì·¨ë¯¸ëŠ” ì£¼ì†Œë²ˆì§€ê°€ ì €ì¥ë˜ê¸°ì— ìœ„ì— ë°°ì—´ì˜ ë‚´ìš©ì„ í•˜ë‚˜ì˜ ìŠ¤íŠ¸ë§ìœ¼ë¡œ ì €ì¥í•œ ë³€ìˆ˜ë¥´ ë‹¤ì‹œ ì…ë ¥
 	mbean.setHobby(texthobby);  
 
 
 	MemberDao mdao = new MemberDao();
 	mdao.insertMethod(mbean);
 	
-	//È¸¿ø °¡ÀÔÀÌ µÇ¾ú´Ù¸é È¸¿ø Á¤º¸¸¦ º¸¿©ÁÖ´Â ÆäÀÌÁö·Î ÀÌµ¿½ÃÅ´
+	//íšŒì› ê°€ì…ì´ ë˜ì—ˆë‹¤ë©´ íšŒì› ì •ë³´ë¥¼ ë³´ì—¬ì£¼ëŠ” í˜ì´ì§€ë¡œ ì´ë™ì‹œí‚´
 	response.sendRedirect("MemberList.jsp");
 	
 	
@@ -51,22 +51,22 @@
 	String id = "sa";
 	String pass = "JVM";
 	
-	//Á¢¼Ó url
+	//ì ‘ì† url
 	String connectionUrl = "jdbc:sqlserver://localhost\\sqlexpress:50678;databaseName=JSPTest;user=sa;password=JVM;trustServerCertificate=true;";
 
 	
 	try (Connection con = DriverManager.getConnection(connectionUrl)) {
 		
-		//ÇØ´ç µ¥ÀÌÅÍ º£ÀÌ½º Á¢¼Ó
+		//í•´ë‹¹ ë°ì´í„° ë² ì´ìŠ¤ ì ‘ì†
 		System.out.println("Connected to SQL Server successfully.");
            
 		
-		//Á¢¼Ó ÈÄ Äõ¸® ÁØºñÇÏ¿© Äõ¸®¸¦ »ç¿ëÇÏ·Ï ¼³Á¤
+		//ì ‘ì† í›„ ì¿¼ë¦¬ ì¤€ë¹„í•˜ì—¬ ì¿¼ë¦¬ë¥¼ ì‚¬ìš©í•˜ë¡ ì„¤ì •
 		String sql = "insert into member values(?,?,?,?,?,?,?,?)";
 		
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		
-		//?¿¡ ¸Â°Ô µ¥ÀÌÅÍ¸¦ ¸ÊÇÎ
+		//?ì— ë§ê²Œ ë°ì´í„°ë¥¼ ë§µí•‘
 				
 		pstmt.setString(1, mbean.getId());
 		pstmt.setString(2, mbean.getPass1());
@@ -77,10 +77,10 @@
 		pstmt.setString(7, mbean.getAge());
 		pstmt.setString(8, mbean.getInfo());
 		
-		//MSSQL Äõ¸®¸¦ ½ÇÇàÇÏ½Ã¿À.
-		pstmt.executeUpdate(); //insert, update,delete ½Ã »ç¿ëÇÏ´Â ¸Ş¼Òµå
+		//MSSQL ì¿¼ë¦¬ë¥¼ ì‹¤í–‰í•˜ì‹œì˜¤.
+		pstmt.executeUpdate(); //insert, update,delete ì‹œ ì‚¬ìš©í•˜ëŠ” ë©”ì†Œë“œ
 		
-		//ÀÚ¿ø ¹İ³³
+		//ìì› ë°˜ë‚©
 		
         con.close();
            
@@ -93,9 +93,9 @@
 
 %>
 
-	<h2>´ç½ÅÀÇ ¾ÆÀÌµğ = <%=mbean.getId() %></h2>
+	<h2>ë‹¹ì‹ ì˜ ì•„ì´ë”” = <%=mbean.getId() %></h2>
 	
-	<h2>´ç½ÅÀÇ ¾ÆÀÌµğ = <%=mbean.getHobby() %></h2>
+	<h2>ë‹¹ì‹ ì˜ ì•„ì´ë”” = <%=mbean.getHobby() %></h2>
 
 </body>
 </html>
@@ -104,7 +104,7 @@
 USE [JSPTest]
 GO
 
-/****** Object:  Table [dbo].[MEMBER]    Script Date: 2024-09-03 ¿ÀÈÄ 9:40:00 ******/
+/****** Object:  Table [dbo].[MEMBER]    Script Date: 2024-09-03 ì˜¤í›„ 9:40:00 ******/
 SET ANSI_NULLS ON
 GO
 
