@@ -1,82 +1,82 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 
 	<center>
-		<h2>È¸¿ø °¡ÀÔ</h2>
+		<h2>íšŒì› ê°€ìž…</h2>
 		<form action="MemberJoinProc.jsp" name="post">
 			<table width=500 " border="1">
 				<tr height="50">
-					<td width="150" align="center">¾ÆÀÌµð</td>
+					<td width="150" align="center">ì•„ì´ë””</td>
 					<td width="350"><input type="text" name="id" size="40">
 					</td>
 				</tr>
 				<tr height="50">
-					<td width="150" align="center">ÆÐ½º¿öµå</td>
+					<td width="150" align="center">íŒ¨ìŠ¤ì›Œë“œ</td>
 					<td width="350"><input type="password" name="pass1" size="40">
 					</td>
 				</tr>
 
 				<tr height="50">
-					<td width="150" align="center">ÆÐ½º¿öµå È®ÀÎ</td>
+					<td width="150" align="center">íŒ¨ìŠ¤ì›Œë“œ í™•ì¸</td>
 					<td width="350"><input type="" password"" name="pass2"
 						size="40"></td>
 				</tr>
 				<tr height="50">
-					<td width="150" align="center">ÀÌ¸ÞÀÏ</td>
+					<td width="150" align="center">ì´ë©”ì¼</td>
 					<td width="350"><input type="email" name="email" size="40">
 					</td>
 				</tr>
 				<tr height="50">
-					<td width="150" align="center">ÀüÈ­¹øÈ£</td>
+					<td width="150" align="center">ì „í™”ë²ˆí˜¸</td>
 					<td width="350"><input type="tel" name="tel" size="40">
 					</td>
 				</tr>
 				<tr height="50">
-					<td width="150" align="center">´ç½ÅÀÇ °ü½ÉºÐ¾ß</td>
+					<td width="150" align="center">ë‹¹ì‹ ì˜ ê´€ì‹¬ë¶„ì•¼</td>
 					<td widht="350" align="center"><input type="checkbox"
-						name="hobby" value="Ä·ÇÎ">Ä·ÇÎ &nbsp;&nbsp; <input
-						type="checkbox" name="hobby" value="µî»ê">µî»ê &nbsp;&nbsp; <input
-						type="checkbox" name="hobby" value="¿µÈ­">¿µÈ­ &nbsp;&nbsp; <input
-						type="checkbox" name="hobby" value="µ¶¼­">µ¶¼­ &nbsp;&nbsp;
+						name="hobby" value="ìº í•‘">ìº í•‘ &nbsp;&nbsp; <input
+						type="checkbox" name="hobby" value="ë“±ì‚°">ë“±ì‚° &nbsp;&nbsp; <input
+						type="checkbox" name="hobby" value="ì˜í™”">ì˜í™” &nbsp;&nbsp; <input
+						type="checkbox" name="hobby" value="ë…ì„œ">ë…ì„œ &nbsp;&nbsp;
 					</td>
 				</tr>
 				<tr height="50">
-					<td width="150" align="center">´ç½ÅÀÇ Á÷¾÷Àº</td>
+					<td width="150" align="center">ë‹¹ì‹ ì˜ ì§ì—…ì€</td>
 					<td widht="350" align="center">
 					<select name="job">
-						<option value="±³»ç">±³»ç</option>
-						<option value="°Ë»ç">º¯È£»ç</option>
-						<option value="ÆÇ»ç">ÆÇ»ç</option>
-						<option value="ÀÇ»ç">ÀÇ»ç</option>
-						<option value="±â¼ú»ç">±â¼ú»ç</option>
+						<option value="êµì‚¬">êµì‚¬</option>
+						<option value="ê²€ì‚¬">ë³€í˜¸ì‚¬</option>
+						<option value="íŒì‚¬">íŒì‚¬</option>
+						<option value="ì˜ì‚¬">ì˜ì‚¬</option>
+						<option value="ê¸°ìˆ ì‚¬">ê¸°ìˆ ì‚¬</option>
 					</select>
 					</td>
 				</tr>
 				<tr height="50">
-					<td width="150" align="center">´ç½ÅÀÇ ¿¬·ÉÀº</td>
+					<td width="150" align="center">ë‹¹ì‹ ì˜ ì—°ë ¹ì€</td>
 					<td widht="350" align="center">
-					<input type="radio" name="age" value="10">10´ë &nbsp;&nbsp; 
-					<input type="radio" name="age" value="20">20´ë &nbsp;&nbsp;
-					<input type="radio" name="age" value="30">30´ë &nbsp;&nbsp; 
-					<input type="radio" name="age" value="40">40´ë &nbsp;&nbsp;  
+					<input type="radio" name="age" value="10">10ëŒ€ &nbsp;&nbsp; 
+					<input type="radio" name="age" value="20">20ëŒ€ &nbsp;&nbsp;
+					<input type="radio" name="age" value="30">30ëŒ€ &nbsp;&nbsp; 
+					<input type="radio" name="age" value="40">40ëŒ€ &nbsp;&nbsp;  
 					</td>
 				</tr>
 				<tr height="50">
-					<td width="150" align="center">ÇÏ°í½ÍÀº¸»</td>
+					<td width="150" align="center">í•˜ê³ ì‹¶ì€ë§</td>
 					<td widht="350" align="center">
 					<textarea rows="5" cols="40" name="info"></textarea>
 				</tr>
 				<tr height="50">
 					<td align="center" colspan="2">
-						<input type="submit" value="È¸¿ø°¡ÀÔ">
-						<input type="reset" value="Ãë¼Ò">
+						<input type="submit" value="íšŒì›ê°€ìž…">
+						<input type="reset" value="ì·¨ì†Œ">
 					</td>
 				</tr>
 				

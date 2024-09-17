@@ -162,4 +162,77 @@ public class MemberDao {
 		
 		return bean;
 	}
+	
+	//한 회원의 패스워드 값을 리턴하는 메소드 작성
+	public String getPass(String id) {
+		//스트링으로 리턴을 해야하기에 스트링 변수 순언
+		
+		String pass = "";
+		
+		try {
+			//커넥션 연결
+			getCon();
+			String sql = "select pass1 from member where id = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			//?에 값을 맵핑
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) { //레코드가 있다면
+				pass = rs.getString(1);
+			}
+		}catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        // 자원 반납
+	        try {
+	            if (rs != null) rs.close();
+	            if (pstmt != null) pstmt.close();
+	            if (con != null) con.close();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+		return pass;
+	}
+	
+	//한 회원의 정보를 수정하는 메소드
+	public void updateMember(MemberBean bean) {
+		getCon();
+		
+		try {
+			
+			String sql = "update member set email=?, tel=? where id=?";
+			
+			//쿼리실행 객체 선언
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, bean.getEmail());
+			pstmt.setString(2, bean.getTel());
+			pstmt.setString(3, bean.getId());
+			
+			
+			//쿼리 실행
+			pstmt.executeUpdate();
+		}catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        // 자원 반납
+	        try {
+	            if (rs != null) rs.close();
+	            if (pstmt != null) pstmt.close();
+	            if (con != null) con.close();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+		
+		
+	}
+	
+	
+	
 }
