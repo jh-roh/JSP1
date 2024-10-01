@@ -6,14 +6,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+
 //MSSQL 데이터베이스에 연결하고 select, insert, update, delete 작업을 실행해주는 클래스
 public class MemberDao {
 
-	String id = "sa";
-	String pass = "JVM";
-	
-	//접속 url
-	String connectionUrl = "jdbc:sqlserver://localhost\\sqlexpress:50678;databaseName=JSPTest;user=sa;password=JVM;trustServerCertificate=true;";
+//	String id = "sa";
+//	String pass = "JVM";
+//	
+//	//접속 url
+//	String connectionUrl = "jdbc:sqlserver://localhost\\sqlexpress:50678;databaseName=JSPTest;user=sa;password=JVM;trustServerCertificate=true;";
 
 	
 	Connection con; //데이터베이스에 접근할 수 있도록 설정
@@ -24,11 +29,29 @@ public class MemberDao {
 	//데이터베이스 접근할 수 있또록 도와주는 메소드
 	public void getCon() {
 		
-		try{
-			con = DriverManager.getConnection(connectionUrl);
+//		try{
+//			con = DriverManager.getConnection(connectionUrl);
+//			
+//		} catch(Exception e) {
+//			// TODO : handle exception
+//		}
+		
+		//커넥션 풀을 이용하여 데이터베이스에 접근
+		try {
+			
+			//외부에서 데이터를 읽어야 하기 때문에
+			Context initctx = new InitialContext();
+			//톰캣 서버에 정보를 담아 놓은곳으로 이동
+			Context envctx = (Context)initctx.lookup("java:comp/env");
+			
+			//데이터 소스 객체를 선언
+			DataSource ds = (DataSource)envctx.lookup("jdbc/pool");
+			
+			//데이터 소스를 기준으로 커넥션을 연결
+			con = ds.getConnection();
 			
 		} catch(Exception e) {
-			// TODO : handle exception
+			e.printStackTrace();
 		}
 		
 		
@@ -228,11 +251,56 @@ public class MemberDao {
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
-	    }
+	    }	
+	}
+	
+	public void deleteMember(MemberBean bean)
+	{
+		
+		getCon();
+		
+		try {
+			
+			String sql = "delete from member where id=?";
+			
+			//쿼리실행 객체 선언
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, bean.getId());
+			
+			//쿼리 실행
+			pstmt.executeUpdate();
+		}catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        // 자원 반납
+	        try {
+	            if (rs != null) rs.close();
+	            if (pstmt != null) pstmt.close();
+	            if (con != null) con.close();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }	
 		
 		
 	}
 	
 	
 	
+	
+	
 }
+
+//커넥션 풀 관련 아파치 톰캣 서버 Server.xml 수정 필요 
+//<Context docBase="JSP1" path="/JSP1" reloadable="true" source="org.eclipse.jst.jee.server:JSP1">
+//	<Resource name="jdbc/pool"
+//			  auth="Container"
+//			  type="javax.sql.DataSource"
+//			  driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+//			  loginTimeout="10"
+//			  maxWait="5000"
+//			  username="sa" password="JVM"
+//			  url="jdbc:sqlserver://localhost\\sqlexpress:50678;databaseName=JSPTest;trustServerCertificate=true;"
+//	 />
+//</Context>
