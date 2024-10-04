@@ -21,10 +21,13 @@
 	//1번째 String 키값을 적어줌.
 	//2번째는 value 값을 넣어준다.
 	//쿠키 만료시간 적용
-	Cookie cookie = new Cookie("a","1234"); 
+	//Cookie cookie = new Cookie("a","1234"); 
+	Cookie cookie = new Cookie(id,"1234"); 
+	
+	
 	
 	//쿠키 유효시간 설정
-	cookie.setMaxAge(60*10); //10분간 유효
+	cookie.setMaxAge(60*1); //1분간 유효
 	
 	//사용자에게 쿠키 값을 넘겨줌.
 	response.addCookie(cookie);
