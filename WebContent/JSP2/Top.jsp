@@ -9,6 +9,19 @@
 <body>
 
 <%
+
+
+	String logout = (String)request.getParameter("logout");
+
+	if(logout != null) {
+		//id에 null값을 부여
+		session.setAttribute("id", null);
+		//세션 유지시간을 0으로 변경
+		session.setMaxInactiveInterval(0);
+
+		response.sendRedirect("Main.jsp");
+	}
+	
 	//세션을 통하여 id를 읽어드림
 	String id = (String)session.getAttribute("id");
 
@@ -47,7 +60,7 @@
 	 		<%	
 		 		}else {
 		 	%>
-		 				<%=id %>님  <button onclick="location.href='Main.jsp?center=../CookieSession/SessionLogout.jsp'" >로그아웃</button>
+		 				<%=id %>님  <button onclick="location.href='Main.jsp?logout=1'" >로그아웃</button>
 		 	<%} %>
 		 	
 		 	</td>		

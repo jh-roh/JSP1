@@ -6,7 +6,7 @@
 
 	<center>
 		<h2>세션 로그인</h2>
-		<form action="SessionLoginProc.jsp" method="post">
+		<form action="../CookieSession/SessionLoginProc.jsp" method="post">
 			<table width="400" border="1">
 				<tr height="50">
 					<td width="150">아이디</td>
