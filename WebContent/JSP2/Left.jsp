@@ -6,22 +6,22 @@
 	<table width="200">
 		<tr height="60">
 			<td width="200" align="center">
-				<a href="#"> 스노우파크</a>
+				<a href="Main.jsp?center='Snowpeak.jsp'"> 스노우파크</a>
 			</td>
 		</tr>
 		<tr height="60">
 			<td width="200" align="center">
-				<a href="#"> 콜맨</a>
+				<a href="Main.jsp?center='Coleman.jsp'"> 콜맨</a>
 			</td>
 		</tr>
 		<tr height="60">
 			<td width="200" align="center">
-				<a href="#"> 지프</a>
+				<a href="Main.jsp?center='Jeep.jsp'"> 지프</a>
 			</td>
 		</tr>
 		<tr height="60">
 			<td width="200" align="center">
-				<a href="#"> 코베아</a>
+				<a href="Main.jsp?center='Kovea.jsp'"> 코베아</a>
 			</td>
 		</tr>
 	</table>
