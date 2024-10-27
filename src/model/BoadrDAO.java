@@ -146,13 +146,23 @@ public class BoadrDAO {
 		try {
 			//커넥션 연결
 			getCon();
+			
+			//조회수 증가 쿼리
+			String readsql = "update board set readcount = readcount + 1 where num=?";
+			pstmt = con.prepareStatement(readsql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
 			String sql = "select * from board where num = ?";
 			
+			//쿼리 실행 객체
 			pstmt = con.prepareStatement(sql);
 			
 			//?에 값을 맵핑
 			pstmt.setInt(1, num);
 			
+			
+			//쿼리 실행 후 결과를 리턴
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) { //레코드가 있다면
