@@ -47,8 +47,12 @@
  	<!-- form에서 사용자로 부터 입력받지 않고 데이터를 넘김 -->
  	<tr height="40">
  		<td align="center" colspan="2">
- 			<input type="hidden" name="" >
- 		
+ 			<input type="hidden" name="ref" value="<%=ref %>" >
+ 			<input type="hidden" name="re_step" value="<%=re_step %>">
+ 			<input type="hidden" name="re_level" value="<%=re_level %>">
+ 			<input type="submit" value="답글쓰기완료" > &nbsp;&nbsp;
+ 			<input type="reset" value="취소"> &nbsp;&nbsp;
+ 			<input type="button" onclick="location.href='BoardList.jsp'">
  		</td>
  	</tr>
  	
